@@ -28,11 +28,12 @@ let showTodo = () => {
     let li = "";
     if(todo){
         todo.forEach((todo, id) => {
+            let taskCompleted = todo.status == "completed" ? "checked" : "";
             li += `
                 <li class="list__box">
                     <label for="${id}">
-                        <input onclick="update(this)" type="checkbox" id="${id}">
-                        <p>${todo.name}</p>
+                        <input onclick="update(this)" type="checkbox" id="${id}" ${taskCompleted}>
+                        <p class="${taskCompleted}">${todo.name}</p>
                     </label>
                     <div class="settings">
                         <img width="18" height="18" src="https://img.icons8.com/ios-glyphs/30/ellipsis.png" alt="ellipsis"/>
@@ -51,7 +52,14 @@ showTodo();
 
 let update = (task) =>{
     let taskName = task.parentElement.lastElementChild;
-    console.log(taskName);
+    if(task.checked){
+        taskName.classList.add("checked");
+        todo[task.id].status = "complete";
+    }else{
+        taskName.classList.remove("checked");
+        todo[task.id].status = "pending";
+    }
+    localStorage.setItem("todo-list", JSON.stringify(todo));
 }
 
 taskInput.addEventListener("keyup", (e) => {

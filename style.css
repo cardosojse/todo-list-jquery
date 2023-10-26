@@ -75,6 +75,9 @@ label{
 label p{
     width: 80%;
 }
+.checked{
+    text-decoration: line-through;
+}
 .settings{
     position: relative;
 }
