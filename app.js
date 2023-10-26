@@ -32,8 +32,8 @@ let showTodo = () => {
                 <li class="list__box">
                     <label for="${id}">
                         <input onclick="update(this)" type="checkbox" id="${id}">
+                        <p>${todo.name}</p>
                     </label>
-                    <p>${todo.name}</p>
                     <div class="settings">
                         <img width="18" height="18" src="https://img.icons8.com/ios-glyphs/30/ellipsis.png" alt="ellipsis"/>
                         <ul class="task__menu">
@@ -50,7 +50,7 @@ let showTodo = () => {
 showTodo();
 
 let update = (task) =>{
-    let taskName = task.parentElement;
+    let taskName = task.parentElement.lastElementChild;
     console.log(taskName);
 }
 

@@ -68,7 +68,11 @@ body{
     justify-content: space-between;
     padding: .8em 0;
 }
-.task__box p{
+label{
+    display: flex;
+    gap: 1.5em;
+}
+label p{
     width: 80%;
 }
 .settings{
