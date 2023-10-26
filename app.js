@@ -26,24 +26,32 @@ let todo = JSON.parse(localStorage.getItem("todo-list"));
 
 let showTodo = () => {
     let li = "";
-    todo.forEach((todo, id) => {
-        li += `
-            <li class="list__box">
-                <label for="${id}">
-                    <input type="checkbox" id="${id}">
-                </label>
-                <p>${todo.name}</p>
-                <div class="settings">
-                    <img width="18" height="18" src="https://img.icons8.com/ios-glyphs/30/ellipsis.png" alt="ellipsis"/>
-                    <ul class="task__menu">
-                        <li><img src="img/edit.png" alt="edit">Edit</li>
-                        <li><img src="img/delete.png" alt="delete">Delete</li>
-                    </ul>
-                </div>
-            </li>
-        `
-    });
+    if(todo){
+        todo.forEach((todo, id) => {
+            li += `
+                <li class="list__box">
+                    <label for="${id}">
+                        <input onclick="update(this)" type="checkbox" id="${id}">
+                    </label>
+                    <p>${todo.name}</p>
+                    <div class="settings">
+                        <img width="18" height="18" src="https://img.icons8.com/ios-glyphs/30/ellipsis.png" alt="ellipsis"/>
+                        <ul class="task__menu">
+                            <li><img src="img/edit.png" alt="edit">Edit</li>
+                            <li><img src="img/delete.png" alt="delete">Delete</li>
+                        </ul>
+                    </div>
+                </li>
+            `
+        });
+    }
     taskBox.innerHTML = li;
+}
+showTodo();
+
+let update = (task) =>{
+    let taskName = task.parentElement;
+    console.log(taskName);
 }
 
 taskInput.addEventListener("keyup", (e) => {
